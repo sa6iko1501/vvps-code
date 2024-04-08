@@ -1,0 +1,31 @@
+
+plugins {
+    id 'java'
+}
+
+
+
+sourceCompatibility = 21
+targetCompatibility = 21
+
+
+dependencies {
+    testImplementation 'junit:junit:4.12'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    main{
+        java{
+            srcDir('src/main')
+        }
+    }
+    test{
+        java{
+            srcDir('src/test')
+        }
+    }
+}
