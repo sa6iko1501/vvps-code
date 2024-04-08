@@ -19,6 +19,14 @@ public class PriceCalculator {
     public List<Train> getTrains(){
         return listOfTrains;
     }
+
+    /**
+     * Method to find a train in the list of trains by destination city and arrival time
+     *
+     * @param destinationCity The city from which the train departs
+     * @param arrival The tima at which the train arrives at the destination
+     * @return List of {@link Train objects if there is a match/matches, otherwise empty list}
+     */
     public List<Train> getTrainByDestinationCityAndArrivalTime(String destinationCity, LocalTime arrival){
         return listOfTrains.stream()
                 .filter(x -> x.getDestinationCity().equals(destinationCity) && x.getArrival().equals(arrival))
