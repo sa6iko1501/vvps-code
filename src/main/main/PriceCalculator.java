@@ -4,8 +4,10 @@ import models.Train;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PriceCalculator {
     public List<Train> listOfTrains;
@@ -16,6 +18,21 @@ public class PriceCalculator {
 
     public List<Train> getTrains(){
         return listOfTrains;
+    }
+    public List<Train> getTrainByDestinationCityAndArrivalTime(String destinationCity, LocalTime arrival){
+        return listOfTrains.stream()
+                .filter(x -> x.getDestinationCity().equals(destinationCity) && x.getArrival().equals(arrival))
+                .collect(Collectors.toList());
+    }
+    public List<Train> getTrainByDestinationCityAndDepartureTime(String destinationCity, LocalTime departure){
+        return listOfTrains.stream()
+                .filter(x -> x.getDestinationCity().equals(destinationCity) && x.getDeparture().equals(departure))
+                .collect(Collectors.toList());
+    }
+
+    public List<Train> getTrainByDestinationCity(String destinationCity){
+        return listOfTrains.stream().filter(x -> x.getDestinationCity().equals(destinationCity))
+                .collect(Collectors.toList());
     }
 
     public void addTrain(Train train){
@@ -77,7 +94,7 @@ public class PriceCalculator {
     public static double calculatePriceBasedOnOneWayOrRoundTrip(boolean isOneway,double priceBeforeCalculation){
         double finalPrice = priceBeforeCalculation;
         if(!isOneway){
-            finalPrice = (BigDecimal.valueOf(finalPrice).multiply(BigDecimal.TWO))
+            finalPrice = (BigDecimal.valueOf(finalPrice).multiply(BigDecimal.valueOf(2)))
                     .setScale(2, RoundingMode.HALF_UP).doubleValue();
         }
         return finalPrice;

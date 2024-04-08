@@ -3,12 +3,11 @@ plugins {
     id 'java'
 }
 
-
-
-sourceCompatibility = 21
-targetCompatibility = 21
-
-
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
 dependencies {
     testImplementation 'junit:junit:4.12'
 }

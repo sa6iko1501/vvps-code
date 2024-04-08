@@ -1,7 +1,12 @@
 package test;
 
+import main.PriceCalculator;
+import models.Train;
 import org.junit.Test;
 import org.junit.Assert;
+
+import java.time.LocalTime;
+import java.util.List;
 
 public class PriceCalculatorTest {
     @Test
@@ -68,5 +73,14 @@ public class PriceCalculatorTest {
         Assert.assertEquals(3.3, main.PriceCalculator
                 .calculatePriceApplyDiscounts(10,
                         true, true, true), 0);
+    }
+
+    @Test
+    public void getTrainByDestinationCityTest() {
+        List<Train> trains = List.of(new Train(LocalTime.NOON, LocalTime.MIDNIGHT, "Vraca", "Sofia", 120),
+                new Train(LocalTime.NOON, LocalTime.MIDNIGHT, "Sofia", "Plovdiv", 180),
+                new Train(LocalTime.NOON, LocalTime.MIDNIGHT, "Plovdiv", "Burgas", 280));
+        PriceCalculator priceCalculator = new PriceCalculator(trains);
+        Assert.assertEquals(trains.get(0), priceCalculator.getTrainByDestinationCity("Sofia").get(0));
     }
 }

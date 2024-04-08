@@ -32,8 +32,9 @@ public class UserBasket {
     }
     public void deleteReservation(Reservation reservation){
         if(reservation != null){
-            if(reservations.stream().anyMatch(x -> x.equals(reservation)))
+            if(reservations.stream().anyMatch(x -> x.equals(reservation))) {
                 reservations.remove(reservation);
+            }
         }
     }
 }

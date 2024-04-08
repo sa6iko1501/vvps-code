@@ -1,17 +1,19 @@
 package models;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.chrono.ChronoLocalDateTime;
 
 public class Train {
-    private final LocalDateTime departure;
-    private final LocalDateTime arrival;
+    private final LocalTime departure;
+    private final LocalTime arrival;
     private final double distanceInKm;
     private final String departingCity;
 
     private final String destinationCity;
 
-    public Train(LocalDateTime departure, LocalDateTime arrival, String departingCity, String destinationCity
-            ,double distanceInKm) {
+    public Train(LocalTime departure, LocalTime arrival, String departingCity, String destinationCity,
+                 double distanceInKm) {
         if(departure == null || arrival == null || departingCity == null || destinationCity == null
                 || departingCity.isEmpty() || destinationCity.isEmpty() || distanceInKm < 0){
             throw new RuntimeException("Invalid data for train");
@@ -26,11 +28,11 @@ public class Train {
         this.distanceInKm = distanceInKm;
     }
 
-    public LocalDateTime getDeparture() {
+    public LocalTime getDeparture() {
         return departure;
     }
 
-    public LocalDateTime getArrival() {
+    public LocalTime getArrival() {
         return arrival;
     }
 
